@@ -5,7 +5,7 @@
 
 using namespace std;
 
-const in SIZE = 2;
+const int SIZE = 2;
 
 void printArrayDescriptions(Room**, int);
 void printVectorDescriptions(Vector<Room*> &);
