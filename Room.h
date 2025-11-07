@@ -4,12 +4,12 @@
 using namespace std;
 
 class Room {
- public;
+ public:
   Room();
   Room(char*);
   char* getDescription();
   int getID();
- private;
+ private:
   char*description;
   int id;
 };
