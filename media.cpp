@@ -23,6 +23,6 @@ Media::Media()
 // Print method for media which prints the title and year.
 void Media::Print()
 {
-    printf( "Title: %s\n", title );
-    printf( "Year: %d\n", year );
+    cout << ( "Title: \n", title );
+    cout << ( "Year: \n", year );
 }
