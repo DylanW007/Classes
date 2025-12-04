@@ -10,19 +10,18 @@
  *      - title, year, publisher, rating
  */
 
-#include <cstdio>
+#include <iostream>
+#include <cstring>
 #include "media.h"
 
-// default constructor for media which zeros out the title and year.
-Media::Media()
-{
-    title[0] = '\0';
+using namespace std;
+
+Media::Media(){
+    title = new char[80];
     year = 0;
 }
 
-// Print method for media which prints the title and year.
-void Media::Print()
-{
-    cout << ( "Title: \n", title );
-    cout << ( "Year: \n", year );
+void Media::Print(){
+    return media;
+    return year;
 }
