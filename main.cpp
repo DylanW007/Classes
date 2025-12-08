@@ -12,22 +12,18 @@
 
  const int SIZE = 6;
 
+ void printMedia(Media** newlist, int size){
+   for(int a = 0; a < size; a++){
+     cout << newlist[a]->getTitle() << endl;
+   }
+ }
+
  int main()
  {
     // Create a vector to hold media pointers
     vector<Media*> mediaCollection;
     
     char* firstDescription = new char[80];
-    strcpy(firstDescription, "First Media");
-    list[0] = new Media(firstDescription);
-    char* secondDescription = new char[80];
-    strcpy(secondDescription, "Second Media");
-    list[1] = new Media(secondDescription);
-
-    printMedia(list, SIZE);
-    mediaCollection.push_back(list[0]);
-    mediaCollection.push_back(list[1]);
-    //printVectorDescription(mediaCollection);
 
     bool run;
     run = true;
@@ -50,13 +46,8 @@
   //for (Media* media : mediaCollection) {
   
     //}
-  //}
+//}
 
-void printMedia(Media** newlist, int size){
-  for (int a = 0; a < size; a++) {
-    cout << newlist[a]->getTitle() << endl;
-    }
-}
 
 //void deleteMedia(){
     // Clean up memory
