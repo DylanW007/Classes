@@ -7,7 +7,6 @@
 #include <iostream>
 #include <cstring>
 #include <vector>
-#include <bits/stdc++.h> // for converting command to lowercase.
 #include "media.h"
 using namespace std;
 
@@ -145,4 +144,5 @@ int main()
     
     return 0;
 }
+
 
