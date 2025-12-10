@@ -17,11 +17,16 @@
 using namespace std;
 
 Media::Media(){
-    title = new char[80];
-    year = 0;
+    title = new char[50];
+    title[0] = '\0'; // string empty
+
+    year = 0; // set year at 0.
 }
 
-void Media::Print(){
-    return media;
+char* Media::getTitle(){
+    return title;
+}
+
+int Media::getYear(){
     return year;
 }
