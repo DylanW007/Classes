@@ -13,6 +13,29 @@ using namespace std;
 
 const int SIZE = 6;
 
+void addMedia(vector<Media*>& collection){ // Moved above main
+    // Add Media
+    cout << "What type of media (Help for media types): " << endl;
+    cin >> mediatype;
+    
+    cout << "Enter the Title: ";
+    cin.getline(title, 80); // https://www.geeksforgeeks.org/cpp/getline-string-c/
+    
+    cout << "Enter the Year: ";
+    cin >> year;
+    
+    //collection.push_back
+}
+
+//void searchMedia(){
+  // Search Media
+//}
+
+
+//void deleteMedia(){
+    // Delete Media
+//}
+
 int main()
 {
     vector<Media*> mediaCollection;
@@ -34,8 +57,8 @@ int main()
        
       
        if (command == "add"){
-           cout << "Add" << endl;
-           //addMedia();
+           //cout << "Add" << endl;
+           addMedia(mediaCollection);
        }
       
        else if (command == "search"){
@@ -64,18 +87,4 @@ int main()
     }
     
     return 0;
-}
-
-void addMedia(Media** newlist, int size){
-    // Add Media
- }
-
-
-void searchMedia(){
-  // Search Media
-}
-
-
-void deleteMedia(){
-    // Delete Media
 }
