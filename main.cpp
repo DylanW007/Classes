@@ -30,57 +30,57 @@ void addMedia(vector<Media*>& collection){ // Moved above main
     if (strcmp(mediatype, "music") == 0){
       bool check = true;
       while (check = true){
-	char askcheck;
-	char title[50];
-	int year;
-	char publisher[50];
-	float rating;
+	  	char askcheck;
+	  	char title[50];
+	  	int year;
+	  	char publisher[50];
+	  	float rating;
 	
-	cout << "What is the title?: ";
-	cin >> title;
-	cout << "What is the year?: ";
-	cin >> year;
+	  	cout << "What is the title?: ";
+	  	cin >> title;
+	  	cout << "What is the year?: ";
+	  	cin >> year;
         cout << "Who is the publisher?: ";
-	cin >> publisher;
-	cout << "What is the rating?: ";
-	cin >> rating;
+	  	cin >> publisher;
+	  	cout << "What is the rating?: ";
+	  	cin >> rating;
 
         cout << "\nMusic:" << endl;
-	cout << "======" << endl;
-	cout << title << endl;
-	cout << year << endl;
-	cout << publisher << endl;
-	cout << rating << endl;
+	  	cout << "======" << endl;
+	  	cout << title << endl;
+	  	cout << year << endl;
+	  	cout << publisher << endl;
+	  	cout << rating << endl;
 	
-	cout << "Does this look right (y/n)?: " << endl;
+	  	cout << "Does this look right (y/n)?: " << endl;
         cin >> askcheck;
 
-	if (askcheck == 'y'){
-	  check = false;
-	}
-	else if (askcheck == 'n'){
-	   char askcheck = '\0';
-	   cout << "Redo'ing" << endl;
-	}
-	else{
-	  cout << "Not valid" << endl;
-	}
+	  	if (askcheck == 'y'){
+	    	check = false;
+	  	}
+	  	else if (askcheck == 'n'){
+	     	char askcheck = '\0';
+	     	cout << "Redo'ing" << endl;
+	  	}
+	  	else{
+	    	cout << "Not valid" << endl;
+	  	}
 	
-      }
-    }
+        	}
+      	}
 
-    else if (mediatype == "videogame"){
+      	else if (mediatype == "videogame"){
 
-    }
+      	}
 
-    else if (mediatype == "movie"){
+      	else if (mediatype == "movie"){
 
-    }
+     	 }
 
-    else{
-      cout << "Not a valid media input" << endl;
-    }
-}
+      	else{
+        	cout << "Not a valid media input" << endl;
+      	}
+  	}
 
 //void searchMedia(){
   // Search Media
@@ -143,3 +143,4 @@ int main()
     
     return 0;
 }
+
