@@ -28,8 +28,9 @@ void addMedia(vector<Media*>& collection){ // Moved above main
     }
 
     if (strcmp(mediatype, "music") == 0){
-      bool check = true;
-      while (check = true){
+      bool check=true;
+      
+      while (check == true){
 	  	char askcheck;
 	  	char title[50];
 	  	int year;
@@ -52,22 +53,23 @@ void addMedia(vector<Media*>& collection){ // Moved above main
 	  	cout << publisher << endl;
 	  	cout << rating << endl;
 	
-	  	cout << "Does this look right (y/n)?: " << endl;
+	  	cout << "Does this look right (y/n)?: ";
         cin >> askcheck;
+        cout << "\n";
 
 	  	if (askcheck == 'y'){
+	  	    //char mediatype = '\0';
 	    	check = false;
 	  	}
 	  	else if (askcheck == 'n'){
-	     	char askcheck = '\0';
-	     	cout << "Redo'ing" << endl;
+	     	char askcheck = '\0'; // needed to prevent memory leak
 	  	}
 	  	else{
 	    	cout << "Not valid" << endl;
 	  	}
 	
-        	}
-      	}
+        }
+    }
 
       	else if (mediatype == "videogame"){
 
