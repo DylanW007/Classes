@@ -9,6 +9,12 @@
  *   - Video games
  *      - title, year, publisher, rating
  */
+ 
+#ifndef MEDIA_H // https://www.geeksforgeeks.org/cpp/header-files-in-c-c-with-examples/ (Used the "User-Defined header files")
+                // if media.h not defined...
+                
+#define MEDIA_H // define. Else continue (Don't want a redefinition).
+                
 #include <iostream>
 #include <cstring>
 
@@ -17,15 +23,16 @@ using namespace std;
 class Media
 {
     public:
-    Media();
+        Media() {}
 
-    virtual ~Media()
+        virtual ~Media() {}
 
-    // methods that are shared by all types of media such as 
-    char* getTitle()
-    int getYear()
+        char* getTitle();
+        int getYear();
 
     private:
-    char* title[100];
-    int year;
+        char* title;
+        int year;
 };
+
+#endif
