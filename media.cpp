@@ -1,7 +1,7 @@
 /*
  * Media class
  * 
- * This defines the base class for all types of media such as:
+ * This implements the base class for all types of media such as:
  *   - Music
  *      - title, artist, year, duration, publisher
  *   - Movies
@@ -9,32 +9,29 @@
  *   - Video games
  *      - title, year, publisher, rating
  */
- 
-#ifndef MEDIA_H // https://www.geeksforgeeks.org/cpp/header-files-in-c-c-with-examples/ (Used the "User-Defined header files") + learncpp.com/cpp-tutorial/header-guards/
-                // if media.h not defined...
-                
-#define MEDIA_H // define. Else continue (Don't want a redefinition).
-                
+
 #include <iostream>
 #include <cstring>
+#include "media.h"
 
 using namespace std;
 
-class Media
-{
-    public:
-        Media();
-        virtual ~Media() {}
-        
-        char* getTitle();
-        int getYear();
-        
-        virtual void Print();
-        
-    protected: // Protected allows child classes use the variables. (I originally had it as priavte).
-              // https://www.w3schools.com/cpp/cpp_access_specifiers.asp
-        char* title;
-        int year;
-};
+Media::Media(){
+    title = new char[50];
+    title[0] = '\0'; // string empty
 
-#endif
+    year = 0; // set year at 0.
+}
+
+char* Media::getTitle(){
+    return title;
+}
+
+int Media::getYear(){
+    return year;
+}
+
+void Media::Print(){
+    cout << "Title: " << title << endl;
+    cout << "Year: " << year << endl;
+}
