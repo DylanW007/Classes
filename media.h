@@ -29,6 +29,8 @@ class Media
         char* getTitle();
         int getYear();
         
+        virtual void Print();
+        
     protected: // Protected allows child classes use the variables. (I originally had it as priavte).
               // https://www.w3schools.com/cpp/cpp_access_specifiers.asp
         char* title;
