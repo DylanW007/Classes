@@ -8,12 +8,16 @@
 #include <cstring>
 #include <vector>
 #include "media.h"
+#include "music.h"
+
 using namespace std;
 
 const int SIZE = 6;
 
+// =============================================================
+// Add Media
+
 void addMedia(vector<Media*>& collection){ // Moved above main
-    // Add Media
 
     char mediatype[50];
     char title[50];
@@ -30,6 +34,7 @@ void addMedia(vector<Media*>& collection){ // Moved above main
       bool check=true;
       
       while (check == true){
+         
 	  	char askcheck;
 	  	char title[50];
 	  	int year;
@@ -82,15 +87,20 @@ void addMedia(vector<Media*>& collection){ // Moved above main
         	cout << "Not a valid media input" << endl;
       	}
   	}
+  
+// =============================================================
 
 //void searchMedia(){
   // Search Media
 //}
 
+// =============================================================
 
 //void deleteMedia(){
     // Delete Media
 //}
+
+// =============================================================
 
 int main()
 {
@@ -144,5 +154,3 @@ int main()
     
     return 0;
 }
-
-
