@@ -3,7 +3,8 @@
  * 
  * This defines the music class which is a type of Media
  *   - Movie
- *      - title, artist, year, duration, publisher
+ *      - title, year, director, duration, rating
+
  *
  * Author: Dylan Waters
  */
@@ -17,15 +18,11 @@ class Movie : public Media
         
         virtual ~Movie() {}
         
-        void SetPublisher();
-        void SetArtist();
-        void SetDuration();
-        
         virtual void print();
-        virtual void askUser();   
+        virtual void askUser();
         
     protected: // Protected allows child classes use the variables.
-        char publisher[256];
-        char artist[256];
+        char director[256];
         int duration;
+        int rating;
 };
