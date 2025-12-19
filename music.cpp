@@ -3,7 +3,7 @@
  * 
  * This defines the music class which is a type of Media
  *   - Music
- *      - title, artist, year, duration, publisher
+ *      -  title, artist, year, duration, publisher
  *
  */
 
@@ -17,22 +17,6 @@ using namespace std;
 Music::Music(){
     publisher[0] = '\0'; // string empty
     artist[0] = '\0';    // string empty
-}
-
-void Music::SetPublisher(){
-    cout << "Enter publisher: ";
-    cin.getline(publisher, sizeof(publisher));
-}
-
-void Music::SetArtist(){
-    cout << "Enter artist: ";
-    cin.getline(artist, sizeof(artist));
-}
-
-void Music::SetDuration(){
-    cout << "Enter duration: ";
-    cin >> duration;
-    cin.ignore(256, '\n');  // Eat the newline that comes after the integer
 }
 
 void Music::print(){
