@@ -1,32 +1,54 @@
 /*
- * Media class
+ * Music class
  * 
- * This implements the base class for all types of media such as:
+ * This defines the music class which is a type of Media
  *   - Music
  *      - title, artist, year, duration, publisher
- *   - Movies
- *      - title, director, year, duration, rating
- *   - Video games
- *      - title, year, publisher, rating
+ *
  */
+
+#include "music.h"
 
 #include <iostream>
 #include <cstring>
-#include "media.h"
 
 using namespace std;
 
-Media::Media(){
-    title = new char[50];
-    title[0] = '\0'; // string empty
-
-    year = 0; // set year at 0.
+Music::Music(){
+    publisher[0] = '\0'; // string empty
+    artist[0] = '\0';    // string empty
 }
 
-char* Media::getTitle(){
-    return title;
+void Music::SetPublisher(){
+    cout << "Enter publisher: ";
+    cin.getline(publisher, sizeof(publisher));
 }
 
-int Media::getYear(){
-    return year;
+void Music::SetArtist(){
+    cout << "Enter artist: ";
+    cin.getline(artist, sizeof(artist));
+}
+
+void Music::SetDuration(){
+    cout << "Enter duration: ";
+    cin >> duration;
+    cin.ignore(256, '\n');  // Eat the newline that comes after the integer
+}
+
+void Music::print(){
+    Media::print();
+    cout << "Publisher: " << publisher << endl;
+    cout << "Artist: " << artist << endl;
+    cout << "Duration: " << duration << endl;
+}
+
+void Music::askUser(){
+    Media::askUser();
+    
+    cout << "Who is the publisher?: ";
+  	cin >> publisher;
+  	cout << "What is the artist?: ";
+  	cin >> artist;
+  	cout << "What is the duration?: ";
+  	cin >> duration;
 }
