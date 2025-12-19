@@ -1,38 +1,31 @@
 /*
- * Media class
+ * Music class
  * 
- * This defines the base class for all types of media such as:
+ * This defines the music class which is a type of Media
  *   - Music
  *      - title, artist, year, duration, publisher
- *   - Movies
- *      - title, director, year, duration, rating
- *   - Video games
- *      - title, year, publisher, rating
+ *
+ * Author: Dylan Waters
  */
  
-#ifndef MEDIA_H // https://www.geeksforgeeks.org/cpp/header-files-in-c-c-with-examples/ (Used the "User-Defined header files") + learncpp.com/cpp-tutorial/header-guards/
-                // if media.h not defined...
-                
-#define MEDIA_H // define. Else continue (Don't want a redefinition).
-                
-#include <iostream>
-#include <cstring>
-
-using namespace std;
-
-class Media
+ #include "media.h"
+ 
+class Music : public Media
 {
     public:
-        Media();
-        virtual ~Media() {}
+        Music();
         
-        char* getTitle();
-        int getYear();
+        virtual ~Music() {}
         
-    protected: // Protected allows child classes use the variables. (I originally had it as priavte).
-              // https://www.w3schools.com/cpp/cpp_access_specifiers.asp
-        char* title;
-        int year;
+        void SetPublisher();
+        void SetArtist();
+        void SetDuration();
+        
+        virtual void print();
+        virtual void askUser();   
+        
+    protected: // Protected allows child classes use the variables.
+        char publisher[256];
+        char artist[256];
+        int duration;
 };
-
-#endif
