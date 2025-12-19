@@ -3,7 +3,7 @@
  * 
  * This defines the music class which is a type of Media
  *   - Music
- *      - title, artist, year, duration, publisher
+ *      -  title, artist, year, duration, publisher
  *
  * Author: Dylan Waters
  */
@@ -16,10 +16,6 @@ class Music : public Media
         Music();
         
         virtual ~Music() {}
-        
-        void SetPublisher();
-        void SetArtist();
-        void SetDuration();
         
         virtual void print();
         virtual void askUser();   
