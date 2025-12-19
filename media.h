@@ -24,16 +24,18 @@ class Media
 {
     public:
         Media();
-        virtual ~Media() {}
+        
+        virtual ~Media();
         
         char* getTitle();
         int getYear();
         
-        virtual void Print();
+        virtual void askUser();        
+        virtual void print();
         
-    protected: // Protected allows child classes use the variables. (I originally had it as priavte).
+    protected: // Protected allows child classes use the variables.
               // https://www.w3schools.com/cpp/cpp_access_specifiers.asp
-        char* title;
+        char title[256];
         int year;
 };
 
