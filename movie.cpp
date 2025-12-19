@@ -3,7 +3,7 @@
  * 
  * This defines the music class which is a type of Media
  *   - Movie
- *      - title, artist, year, duration, publisher
+ *      - title, year, director, duration, rating
  *
  */
 
@@ -15,40 +15,23 @@
 using namespace std;
 
 Movie::Movie(){
-    publisher[0] = '\0'; // string empty
-    artist[0] = '\0';    // string empty
-}
-
-void Movie::SetPublisher(){
-    cout << "Enter publisher: ";
-    cin.getline(publisher, sizeof(publisher));
-}
-
-void Movie::SetArtist(){
-    cout << "Enter artist: ";
-    cin.getline(artist, sizeof(artist));
-}
-
-void Movie::SetDuration(){
-    cout << "Enter duration: ";
-    cin >> duration;
-    cin.ignore(256, '\n');  // Eat the newline that comes after the integer
+    director[0] = '\0'; // string empty
 }
 
 void Movie::print(){
     Media::print();
-    cout << "Publisher: " << publisher << endl;
-    cout << "Artist: " << artist << endl;
+    cout << "Director: " << director << endl;
     cout << "Duration: " << duration << endl;
+    cout << "Rating: " << rating << endl;
 }
 
 void Movie::askUser(){
     Media::askUser();
     
-    cout << "Who is the publisher?: ";
-  	cin >> publisher;
-  	cout << "What is the artist?: ";
-  	cin >> artist;
+    cout << "Who is the director?: ";
+  	cin >> director;
   	cout << "What is the duration?: ";
   	cin >> duration;
+  	cout << "What is the rating?: ";
+  	cin >> rating;
 }
