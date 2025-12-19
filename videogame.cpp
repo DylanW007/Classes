@@ -3,7 +3,7 @@
  * 
  * This defines the music class which is a type of Media
  *   - VideoGame
- *      - title, artist, year, duration, publisher
+ *      - title, year, publisher, rating
  *
  */
 
@@ -16,30 +16,13 @@ using namespace std;
 
 VideoGame::VideoGame(){
     publisher[0] = '\0'; // string empty
-    artist[0] = '\0';    // string empty
 }
 
-void VideoGame::SetPublisher(){
-    cout << "Enter publisher: ";
-    cin.getline(publisher, sizeof(publisher));
-}
-
-void VideoGame::SetArtist(){
-    cout << "Enter artist: ";
-    cin.getline(artist, sizeof(artist));
-}
-
-void VideoGame::SetDuration(){
-    cout << "Enter duration: ";
-    cin >> duration;
-    cin.ignore(256, '\n');  // Eat the newline that comes after the integer
-}
 
 void VideoGame::print(){
     Media::print();
     cout << "Publisher: " << publisher << endl;
-    cout << "Artist: " << artist << endl;
-    cout << "Duration: " << duration << endl;
+    cout << "Rating: " << rating << endl;
 }
 
 void VideoGame::askUser(){
@@ -47,8 +30,6 @@ void VideoGame::askUser(){
     
     cout << "Who is the publisher?: ";
   	cin >> publisher;
-  	cout << "What is the artist?: ";
-  	cin >> artist;
-  	cout << "What is the duration?: ";
-  	cin >> duration;
+  	cout << "What is the rating?: ";
+  	cin >> rating;
 }
