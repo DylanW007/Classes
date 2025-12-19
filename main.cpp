@@ -15,78 +15,83 @@ using namespace std;
 const int SIZE = 6;
 
 // =============================================================
-// Add Media
+// Check user if output looks correct
+// =============================================================
+bool checkUser(){
+    // Ask the user if this media looks right
+    char askcheck;
+  	cout << "Does this look right (y/n)?: ";
+    cin >> askcheck;
+    cout << "\n";
 
+    // if user accept the new media then let's return it.
+  	if (askcheck == 'y' || askcheck == 'Y'){
+        return true;
+  	}
+  	
+  	// if they don't type a 'y' then assume it's a 'No'
+    if (askcheck == 'n' || askcheck == 'N'){
+        cout << "Ok, let's try this again..." << endl;
+    }
+    else{
+        cout << "Invalid response. Let's try again!" << endl;
+    }
+    
+    return false;
+}
+
+
+// =============================================================
+// Add Media
+// =============================================================
 void addMedia(vector<Media*>& collection){ // Moved above main
 
+    Media* media = nullptr;
+
     char mediatype[50];
-    char title[50];
-    int year;
-  
+
     cout << "What type of media (Help for media types): ";
     cin >> mediatype;
 
     for(auto& m : mediatype){
       m = tolower(m);
     }
+    
+    bool check=true;
+    
+    while(check == true){
 
-    if (strcmp(mediatype, "music") == 0){
-      bool check=true;
-      
-      while (check == true){
-         
-	  	char askcheck;
-	  	char title[50];
-	  	int year;
-	  	char publisher[50];
-	  	float rating;
-	
-	  	cout << "What is the title?: ";
-	  	cin >> title;
-	  	cout << "What is the year?: ";
-	  	cin >> year;
-        cout << "Who is the publisher?: ";
-	  	cin >> publisher;
-	  	cout << "What is the rating?: ";
-	  	cin >> rating;
-
-        cout << "\nMusic:" << endl;
-	  	cout << "======" << endl;
-	  	cout << title << endl;
-	  	cout << year << endl;
-	  	cout << publisher << endl;
-	  	cout << rating << endl;
-	
-	  	cout << "Does this look right (y/n)?: ";
-        cin >> askcheck;
-        cout << "\n";
-
-	  	if (askcheck == 'y'){
-	  	    //char mediatype = '\0';
-	    	check = false;
-	  	}
-	  	else if (askcheck == 'n'){
-	     	char askcheck = '\0'; // needed to prevent memory leak
-	  	}
-	  	else{
-	    	cout << "Not valid" << endl;
-	  	}
-	
+        if (strcmp(mediatype, "music") == 0){
+            media = new Music();
+        }
+        else if (mediatype == "videogame"){
+            media = nullptr;
+        }
+        else if (mediatype == "movie"){
+            media = nullptr;
+        }
+        
+        if (media != nullptr) {
+            media->askUser();
+            media->print();
+            
+            // ask user if they accept the new media
+            if (checkUser()){
+                // Success!
+                check = false;  // Exit loop so we can return new media.
+            }
+            else{
+                // if we get here then they didn't accept new media
+    	  	    // let's delete the object. delete handles nullptr so no need to check here.
+    	  	    delete media;
+    	  	    media = nullptr;
+            }            
         }
     }
+    
+    collection.push_back(media);
+}
 
-      	else if (mediatype == "videogame"){
-
-      	}
-
-      	else if (mediatype == "movie"){
-
-     	 }
-
-      	else{
-        	cout << "Not a valid media input" << endl;
-      	}
-  	}
   
 // =============================================================
 
@@ -100,8 +105,19 @@ void addMedia(vector<Media*>& collection){ // Moved above main
     // Delete Media
 //}
 
-// =============================================================
+void printHelp(){
+    cout << "\nCommands:" << endl;
+    cout << "========" << endl;
+    cout << "Add" << endl;
+    cout << "Search" << endl;
+    cout << "Delete" << endl;
+    cout << "Quit" << endl;
+    cout << "========\n" << endl;
+}
 
+// =============================================================
+// Main function
+// =============================================================
 int main()
 {
     vector<Media*> mediaCollection;
@@ -114,6 +130,7 @@ int main()
     char command[50];
     while(run == true){
       
+       printHelp();
        cout << "What is your command? (Type help for commands): ";
        cin >> command;
 
@@ -121,31 +138,26 @@ int main()
           x = tolower(x);    // (Converts string tolower() using for loop)
        }
 
-       
        if (strcmp(command, "add") == 0){
-           //cout << "Add" << endl;
+           // cout << "Add" << endl;
            addMedia(mediaCollection);
        }
       
        else if (strcmp(command, "search") == 0){
            cout << "Search" << endl;
-           //searchMedia();
+           // searchMedia();
        }
-    
        else if (strcmp(command, "delete") == 0){
            cout << "Delete" << endl;
-           //deleteMedia();
+           // deleteMedia();
        }
-       
        else if (strcmp(command, "help") == 0){
-           cout << "\nCommands:" << endl;
-           cout << "========" << endl;
-           cout << "Add:" << endl;
-           cout << "Search:" << endl;
-           cout << "Delete:" << endl;
-           cout << "========\n" << endl;
+           printHelp();
        }
-      
+       else if (strcmp(command, "quit") == 0){
+           cout << "Quitting!" << endl;
+           run = false;
+       }
        else{
            cout << "Not a valid input." << endl;
        }
