@@ -18,6 +18,10 @@ class Movie : public Media
         
         virtual ~Movie() {}
         
+        char* getDirector() { return director; }
+        int getDuration() { return duration; }
+        int getRating() { return rating; }
+
         virtual void print();
         virtual void askUser();
         
