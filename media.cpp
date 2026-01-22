@@ -3,9 +3,9 @@
  * 
  * This implements the base class for all types of media such as:
  *   - Music
- *      - title, year, artist, duration, publisher
+ *      - title, artist, year, duration, publisher
  *   - Movies
- *      - title, year, director, duration, rating
+ *      - title, director, year, duration, rating
  *   - Video games
  *      - title, year, publisher, rating
  */
@@ -17,30 +17,21 @@
 using namespace std;
 
 Media::Media(){
+    title = new char[50];
     title[0] = '\0'; // string empty
 
     year = 0; // set year at 0.
 }
 
-Media::~Media(){
-}
-
-void Media::askUser(){
-    cout << "What is the title?: ";
-  	cin >> title;
-  	cout << "What is the year?: ";
-  	cin >> year;
-}
-
-char* Media::getTitle(){
-    return title;
-}
-
-int Media::getYear(){
-    return year;
-}
-
 void Media::print(){
     cout << "Title: " << title << endl;
     cout << "Year: " << year << endl;
+}
+
+void Media::askUser() {
+    cout << "Enter title: ";
+    cin.ignore(); // Eat newline character from previous input
+    cin.getline(title, 50);
+    cout << "Enter year: ";
+    cin >> year;
 }
