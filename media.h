@@ -24,18 +24,17 @@ class Media
 {
     public:
         Media();
+        virtual ~Media() { delete title; } // Virtual destructor to avoid memory leaks.
         
-        virtual ~Media();
+        char* getTitle() { return title; }
+        int getYear() { return year; }
         
-        char* getTitle();
-        int getYear();
-        
-        virtual void askUser();        
         virtual void print();
+        virtual void askUser();
         
-    protected: // Protected allows child classes use the variables.
+    protected: // Protected allows child classes use the variables. (I originally had it as private).
               // https://www.w3schools.com/cpp/cpp_access_specifiers.asp
-        char title[256];
+        char* title;
         int year;
 };
 
