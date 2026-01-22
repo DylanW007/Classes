@@ -2,13 +2,17 @@
 //
 // Classes (11/19/25)
 //
-// Description...
+// Description: This is a media database program that allows the user to add, search, and delete different types of media including music, movies, and video games.
+
 
 #include <iostream>
+#include <algorithm>  // Reference: https://www.geeksforgeeks.org/cpp/std-find-in-cpp/
 #include <cstring>
 #include <vector>
 #include "media.h"
 #include "music.h"
+#include "movie.h"
+#include "videogame.h"
 
 using namespace std;
 
@@ -49,69 +53,166 @@ void addMedia(vector<Media*>& collection){ // Moved above main
     Media* media = nullptr;
 
     char mediatype[50];
+    
+    cout << endl;
+    cout << "1. Music" << endl;
+    cout << "2. Video Game" << endl;
+    cout << "3. Movie" << endl;
+    cout << endl << "Select type of media to add: ";
+    int choice;
+    cin >> choice;
 
-    cout << "What type of media (Help for media types): ";
-    cin >> mediatype;
-
-    for(auto& m : mediatype){
-      m = tolower(m);
+    if (choice < 1 || choice > 3){
+        cout << "Invalid choice. Defaulting to Music." << endl;
+        choice = 1;
     }
-    
-    bool check=true;
-    
-    while(check == true){
 
-        if (strcmp(mediatype, "music") == 0){
-            media = new Music();
-        }
-        else if (mediatype == "videogame"){
-            media = nullptr;
-        }
-        else if (mediatype == "movie"){
-            media = nullptr;
-        }
+    if (choice == 1){
+        media = new Music();
+    }
+    else if (choice == 2){
+        media = new VideoGame();
+    }
+    else if (choice == 3){
+        media = new Movie();
+    }
         
-        if (media != nullptr) {
-            media->askUser();
-            media->print();
-            
-            // ask user if they accept the new media
-            if (checkUser()){
-                // Success!
-                check = false;  // Exit loop so we can return new media.
-            }
-            else{
-                // if we get here then they didn't accept new media
-    	  	    // let's delete the object. delete handles nullptr so no need to check here.
-    	  	    delete media;
-    	  	    media = nullptr;
-            }            
+    if (media != nullptr) {
+        media->askUser();
+
+        cout << "\nYou entered the following information:" << endl;
+        media->print();
+        
+        // ask user if they accept the new media
+        if (checkUser()){
+            // Success!
+            collection.push_back(media);
         }
+        else{
+            // if we get here then they didn't accept new media
+            // let's delete the object. delete handles nullptr so no need to check here.
+            delete media;
+            media = nullptr;
+        }            
     }
-    
-    collection.push_back(media);
 }
 
   
 // =============================================================
-
-//void searchMedia(){
-  // Search Media
-//}
-
+// SEARCH:  The user should be able to search for and print objects 
+// currently in the media database by searching for the title or the year.
+// If multiple objects match, list them all. (20 points)
 // =============================================================
+void searchMedia(vector<Media*>& collection) {
+    // Search Media by title or year
+    char searchTitle[50];
+    int searchYear;
+    bool found = false;
 
-//void deleteMedia(){
-    // Delete Media
-//}
+    cout << "Search by title or year?" << endl;
+    cout << "1. Title" << endl;
+    cout << "2. Year" << endl;
+    int choice;
+    cin >> choice;
+
+    cout << endl;
+    if (choice == 1) {
+        cout << "Enter title to search for: ";
+        cin.ignore();
+        cin.getline(searchTitle, 50);
+        for (auto media : collection) {
+            if (strcmp(media->getTitle(), searchTitle) == 0) {
+                cout << endl << "Found mathching media:" << endl;
+                media->print();
+                found = true;
+            }
+        }
+    } else if (choice == 2) {
+        cout << "Enter year to search for: ";
+        cin >> searchYear;
+        for (auto media : collection) {
+            if (media->getYear() == searchYear) {
+                cout << endl << "Found mathching media:" << endl;
+                media->print();
+                found = true;
+            }
+        }
+    }
+
+    if (!found) {
+        cout << "No matching media found." << endl;
+    }
+}
+
+// ==============================================================
+// DELETE: The user should be able to delete an item. Use the same functionality
+// as the search method, then have the user confirm whether they want to delete
+// those objects. USE A DESTRUCTOR. (10 points)
+// =============================================================
+void deleteMedia(vector<Media*>& collection) {
+    // Delete Media by title or year
+    char searchTitle[50];
+    int searchYear;
+    bool found = false;
+
+    cout << "Delete by title or year?" << endl;
+    cout << "1. Title" << endl;
+    cout << "2. Year" << endl;
+    int choice;
+    cin >> choice;
+
+    Media* toDelete = nullptr;
+
+    if (choice == 1) {
+        cout << "Enter title to search for: ";
+        cin.ignore();
+        cin.getline(searchTitle, 50);
+        for (auto media : collection) {
+            if (strcmp(media->getTitle(), searchTitle) == 0) {
+                cout << endl << "Found matching media to delete:" << endl;
+                media->print();
+                found = true;
+                toDelete = media;
+            }
+        }
+    } else if (choice == 2) {
+        cout << "Enter year to search for: ";
+        cin >> searchYear;
+        for (auto media : collection) {
+            if (media->getYear() == searchYear) {
+                cout << endl << "Found matching media to delete:" << endl;
+                media->print();
+                found = true;
+                toDelete = media;
+            }
+        }
+    }
+
+    if (found) {
+        if (toDelete != nullptr) {
+            // Need to delete media from collection vector
+            auto it = find(collection.begin(), collection.end(), toDelete);
+            if (it != collection.end()) {
+                collection.erase(it);
+            }
+
+            // Delete the object
+            delete toDelete;
+            cout << "Media deleted." << endl;
+        }
+    } else {
+        cout << "No matching media found." << endl;
+    }
+}
 
 void printHelp(){
     cout << "\nCommands:" << endl;
     cout << "========" << endl;
-    cout << "Add" << endl;
-    cout << "Search" << endl;
-    cout << "Delete" << endl;
-    cout << "Quit" << endl;
+    cout << "ADD" << endl;
+    cout << "SEARCH" << endl;
+    cout << "DELETE" << endl;
+    cout << "HELP" << endl;
+    cout << "QUIT" << endl;
     cout << "========\n" << endl;
 }
 
@@ -139,17 +240,14 @@ int main()
        }
 
        if (strcmp(command, "add") == 0){
-           // cout << "Add" << endl;
            addMedia(mediaCollection);
        }
       
        else if (strcmp(command, "search") == 0){
-           cout << "Search" << endl;
-           // searchMedia();
+           searchMedia(mediaCollection);
        }
        else if (strcmp(command, "delete") == 0){
-           cout << "Delete" << endl;
-           // deleteMedia();
+            deleteMedia(mediaCollection);
        }
        else if (strcmp(command, "help") == 0){
            printHelp();
