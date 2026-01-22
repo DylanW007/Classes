@@ -18,7 +18,6 @@ VideoGame::VideoGame(){
     publisher[0] = '\0'; // string empty
 }
 
-
 void VideoGame::print(){
     Media::print();
     cout << "Publisher: " << publisher << endl;
@@ -29,7 +28,8 @@ void VideoGame::askUser(){
     Media::askUser();
     
     cout << "Who is the publisher?: ";
-  	cin >> publisher;
+  	cin.ignore(); // Eat newline character from previous input
+  	cin.getline(publisher, 256);
   	cout << "What is the rating?: ";
   	cin >> rating;
 }
