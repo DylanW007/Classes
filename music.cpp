@@ -3,8 +3,9 @@
  * 
  * This defines the music class which is a type of Media
  *   - Music
- *      -  title, artist, year, duration, publisher
+ *      - title, artist, year, duration, publisher
  *
+ * Author: Dylan Waters
  */
 
 #include "music.h"
@@ -13,11 +14,6 @@
 #include <cstring>
 
 using namespace std;
-
-Music::Music(){
-    publisher[0] = '\0'; // string empty
-    artist[0] = '\0';    // string empty
-}
 
 void Music::print(){
     Media::print();
@@ -29,10 +25,11 @@ void Music::print(){
 void Music::askUser(){
     Media::askUser();
     
-    cout << "Who is the publisher?: ";
-  	cin >> publisher;
-  	cout << "What is the artist?: ";
-  	cin >> artist;
-  	cout << "What is the duration?: ";
-  	cin >> duration;
+    cout << "Enter publisher: ";
+    cin.ignore(); // Eat newline character from previous input
+    cin.getline(publisher, 256);
+    cout << "Enter artist: ";
+    cin.getline(artist, 256);
+    cout << "Enter duration: ";
+    cin >> duration;
 }
