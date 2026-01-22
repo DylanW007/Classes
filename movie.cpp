@@ -29,7 +29,7 @@ void Movie::askUser(){
     Media::askUser();
     
     cout << "Who is the director?: ";
-  	cin >> director;
+  	cin.getline(director, 256);
   	cout << "What is the duration?: ";
   	cin >> duration;
   	cout << "What is the rating?: ";
