@@ -3,7 +3,7 @@
  * 
  * This defines the music class which is a type of Media
  *   - Music
- *      -  title, artist, year, duration, publisher
+ *      - title, artist, year, duration, publisher
  *
  * Author: Dylan Waters
  */
@@ -13,14 +13,18 @@
 class Music : public Media
 {
     public:
-        Music();
+        Music() {}
         
-        virtual ~Music() {}
+        ~Music() {}
         
+        char* getPublisher() { return publisher; }
+        char* getArtist() { return artist; }
+        int getDuration() { return duration; }
+
         virtual void print();
-        virtual void askUser();   
+        virtual void askUser();
         
-    protected: // Protected allows child classes use the variables.
+    private:
         char publisher[256];
         char artist[256];
         int duration;
