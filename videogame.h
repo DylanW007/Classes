@@ -16,9 +16,12 @@ class VideoGame : public Media
         VideoGame();
         
         virtual ~VideoGame() {}
-        
+
+        char* getPublisher() { return publisher; }
+        int getRating() { return rating; }
+
         virtual void print();
-        virtual void askUser();   
+        virtual void askUser();
         
     protected: // Protected allows child classes use the variables.
         char publisher[256];
